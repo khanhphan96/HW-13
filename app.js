@@ -49,6 +49,13 @@ function withD3() {
   var Width = window.innerWidth*0.5;
   var Height = window.innerHeight*0.5;
 
+  var svgWidth = window.innerWidth;
+  var svgHeight = window.innerHeight;
+
+
+  var height = svgHeight - margin.top - margin.bottom;
+  var width = svgWidth - margin.left - margin.right;
+
   var margin = {
     top: 60,
     bottom: 60,
@@ -60,8 +67,8 @@ function withD3() {
   var svg = d3
     .select("#scatter")
     .append("svg")
-    .attr("height", Height)
-    .attr("width", Width);
+    .attr("height", svgHeight)
+    .attr("width", svgWidth);
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
@@ -112,8 +119,7 @@ var chartGroup = svg.append("g")
   
 };
 
-withD3();
-
+makeResponsive();
 
 d3.select(window).on("resize", makeResponsive);
 
